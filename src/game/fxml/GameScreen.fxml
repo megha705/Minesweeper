@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -26,6 +28,16 @@
                <font>
                   <Font size="23.0" />
                </font></Text>
+            <Separator orientation="VERTICAL" prefHeight="200.0">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+            </Separator>
+            <Text fx:id="bombsLeftText" strokeType="OUTSIDE" strokeWidth="0.0" text="Bombs left: 10">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
          </children>
       </HBox>
    </top>

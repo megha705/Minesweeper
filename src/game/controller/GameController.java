@@ -25,6 +25,7 @@ public class GameController {
 
 	private Integer gameSize = 10;
 	private Integer bombCount = 20;
+	private Integer bombsLeft = 0;
 	private final Integer tileSize = 35;
 	private ExtendedButton[][] tile;
 	private final Integer bomb = 15689;
@@ -34,6 +35,9 @@ public class GameController {
 	
     @FXML
     private Text timeText;
+    
+    @FXML
+    private Text bombsLeftText;
     
     @FXML
     private GridPane gameGrid;
@@ -122,6 +126,8 @@ public class GameController {
 	    	tl.setCycleCount(Animation.INDEFINITE);
 	    	tl.play();
 	    	
+	    	addToBombsLeft(bombCount);
+	    	
     	} catch (Exception e) {
 			System.out.println("Really bad error!!!");
 			Stage st = (Stage)gameGrid.getScene().getWindow();
@@ -131,6 +137,11 @@ public class GameController {
     	
     	checkIfGameIsEnded();
     }
+
+	private void addToBombsLeft(int i) {
+		bombsLeft += i;
+		bombsLeftText.setText("Bombs left: " + bombsLeft + " out of " + bombCount);
+	}
 
 	private void addSecondToTimer() {
 		seconds++;
@@ -191,8 +202,10 @@ public class GameController {
 	}
 	
 	private void markButton(ExtendedButton button) {
-		System.out.println("Marking: " + button.getCords());
+		
 		if(button.getColor().equals("grey")) {
+			System.out.println("Marking: " + button.getCords());
+			addToBombsLeft(-1);
 			button.setStyle("-fx-background-color: red;");
 			button.setColor("yellow");
 			button.setText("");
@@ -201,6 +214,8 @@ public class GameController {
 				checkIfGameIsEnded();
 			}
 		}else if(button.getColor().equals("yellow")) {
+			System.out.println("UnMarking: " + button.getCords());
+			addToBombsLeft(1);
 			//button.setStyle("-fx-background-color: LightGray;");
 			button.setStyle("-fx-font-weight: bold;");
 			button.setColor("grey");
@@ -208,6 +223,8 @@ public class GameController {
 			if(button.getValue() == bomb) {
 				bombs.add(button);
 			}
+		}else {
+			System.out.println("Can't Mark: " + button.getCords());
 		}
 	}
 	

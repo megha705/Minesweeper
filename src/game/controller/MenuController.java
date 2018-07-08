@@ -19,6 +19,8 @@ public class MenuController {
 
 	private Integer gameSize = 10;
 	private Integer bombCnt = 10;
+	private final Integer MAX_SIZE = 20;
+	private final Integer MIN_SIZE = 10;
 	
     @FXML
     private Button startButton;
@@ -80,7 +82,7 @@ public class MenuController {
 			textFieldCorrectnessLabel.setTextFill(Color.RED);
 		}
     	
-    	if(fieldSize < 8 || 20 < fieldSize) {
+    	if(fieldSize < MIN_SIZE || MAX_SIZE < fieldSize) {
     		textFieldCorrectnessLabel.setText("Incorrect input!");
 			textFieldCorrectnessLabel.setTextFill(Color.RED);
     	}else {
