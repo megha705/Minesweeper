@@ -24,7 +24,7 @@ import javafx.util.Duration;
 public class GameController {
 
 	private Integer gameSize = 10;
-	private Integer bombCount = 10;
+	private Integer bombCount = 20;
 	private final Integer tileSize = 35;
 	private ExtendedButton[][] tile;
 	private final Integer bomb = 15689;
@@ -43,7 +43,7 @@ public class GameController {
     	System.out.println("Setting the game board...");
     	
     	try {
-	    	bombCount = gameSize * 2;
+	    	//bombCount = gameSize * 2;
 	    	
 	    	tile = new ExtendedButton[gameSize][];
 	    	for(int i = 0; i < gameSize; i++) {
@@ -129,6 +129,7 @@ public class GameController {
 		}
     	System.out.println("...done!");
     	
+    	checkIfGameIsEnded();
     }
 
 	private void addSecondToTimer() {
@@ -149,6 +150,11 @@ public class GameController {
 	public void setSize(Integer gameSizeNew) {
 		System.out.println("Setting game size with: " + gameSizeNew);
 		gameSize = gameSizeNew;
+	}
+	
+	public void setBomb(Integer bombCnt) {
+		System.out.println("Setting bomb count: " + bombCnt);
+		bombCount = bombCnt;
 	}
 	
 	private void updateButtonWhenRigthClick(ExtendedButton toUpdate) {

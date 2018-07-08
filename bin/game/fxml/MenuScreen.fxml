@@ -19,11 +19,27 @@
             <Font name="Comic Sans MS" size="56.0" />
          </font>
       </Text>
-      <TextField fx:id="sizeField" layoutX="170.0" layoutY="227.0" prefHeight="25.0" prefWidth="61.0" promptText="Type in size..." text="10" />
-      <Label fx:id="textFieldCorrectnessLabel" layoutX="171.0" layoutY="252.0" prefHeight="17.0" prefWidth="210.0" textFill="RED">
+      <TextField fx:id="sizeField" layoutX="34.0" layoutY="250.0" prefHeight="25.0" prefWidth="61.0" promptText="Type in size..." text="10" />
+      <Label fx:id="textFieldCorrectnessLabel" layoutX="34.0" layoutY="275.0" prefHeight="17.0" prefWidth="210.0" textFill="RED">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
+      <TextField fx:id="bombField" alignment="CENTER_RIGHT" layoutX="304.0" layoutY="250.0" prefHeight="25.0" prefWidth="61.0" promptText="Type in size..." text="10" />
+      <Text layoutX="38.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Label fx:id="bombFieldCorrectnessLabel" alignment="TOP_RIGHT" layoutX="155.0" layoutY="275.0" prefHeight="17.0" prefWidth="210.0" textFill="RED">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Text layoutX="319.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bombs">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
