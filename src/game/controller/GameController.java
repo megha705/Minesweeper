@@ -188,8 +188,9 @@ public class GameController {
 		if(buttonReachable(toUpdate)) {
 			if(toUpdate.getValue() == 0) {
 				spreadZero(toUpdate);
+			} else {
+				showButton(toUpdate);
 			}
-			showButton(toUpdate);
 		}
 	}
 	
