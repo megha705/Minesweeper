@@ -193,7 +193,7 @@ public class GameController {
 		}
 	}
 	
-	private void showButton(ExtendedButton button) {
+	private void showButton(ExtendedButton button, boolean canWin) {
 		System.out.println("Revealing: " + button.getCords());
 		clearTiles.remove(button);
 		//button.setStyle("-fx-background-color: lime;");
@@ -203,7 +203,11 @@ public class GameController {
 			button.setStyle("-fx-font-weight: bold;");
 			button.setText(button.getValue() + "");
 		}
-		checkIfGameIsEnded();
+		if(canWin) checkIfGameIsEnded();
+	}
+	
+	private void showButton(ExtendedButton button) {
+		showButton(button, true);
 	}
 	
 	private void markButton(ExtendedButton button) {
@@ -258,6 +262,8 @@ public class GameController {
 	
 	private void gameEnds() {
 		System.out.println("The game is ended! Couse: lost");
+		for(int i = bombs.size() - 1; i >= 0; i--) markButton(bombs.get(i));
+		for(int i = clearTiles.size() - 1; i >= 0; i--) showButton(clearTiles.get(i), false);
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Game over!");
 		alert.setHeaderText("You lost!");
