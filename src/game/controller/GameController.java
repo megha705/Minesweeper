@@ -30,6 +30,7 @@ public class GameController {
 	private ExtendedButton[][] tile;
 	private final Integer bomb = 15689;
 	private ObservableList<ExtendedButton> bombs = FXCollections.observableArrayList();
+	private ObservableList<ExtendedButton> clearTiles = FXCollections.observableArrayList();
 	private Timeline tl;
 	private Integer hours = 0, minutes = 0, seconds = 0;
 	
@@ -102,6 +103,7 @@ public class GameController {
 	    					sum++;
 	    				}
 	    			}
+	    			clearTiles.add(tile[i][j]);
 	    			tile[i][j].setValue(sum);
 	    		}
 	    	}
@@ -193,12 +195,15 @@ public class GameController {
 	
 	private void showButton(ExtendedButton button) {
 		System.out.println("Revealing: " + button.getCords());
-		button.setStyle("-fx-background-color: lime;");
+		clearTiles.remove(button);
+		//button.setStyle("-fx-background-color: lime;");
+		button.setStyle("-fx-background-color: LightGray;");
 		button.setColor("green");
 		if(button.getValue() != 0) {
 			button.setStyle("-fx-font-weight: bold;");
 			button.setText(button.getValue() + "");
 		}
+		checkIfGameIsEnded();
 	}
 	
 	private void markButton(ExtendedButton button) {
@@ -211,7 +216,6 @@ public class GameController {
 			button.setText("");
 			if(button.getValue() == bomb) {
 				bombs.remove(button);
-				checkIfGameIsEnded();
 			}
 		}else if(button.getColor().equals("yellow")) {
 			System.out.println("UnMarking: " + button.getCords());
@@ -264,8 +268,9 @@ public class GameController {
 	}
 	
 	private void checkIfGameIsEnded() {
-		if(bombs.size() == 0) {
+		if(clearTiles.size() == 0) {
 			System.out.println("The game is ended! Couse: win");
+			for(int i = bombs.size() - 1; i >= 0; i--) markButton(bombs.get(i));
 			tl.stop();
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("You won!");
