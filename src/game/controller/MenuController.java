@@ -1,5 +1,7 @@
 package game.controller;
 
+import java.util.Optional;
+
 import game.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -105,7 +108,34 @@ public class MenuController {
     			return;
     		}
     		
-		    try {
+    		boolean doesUserWantMoreGame = true;
+    		
+    		while(doesUserWantMoreGame) {
+    			runGame();
+    			Alert alert = new Alert(AlertType.CONFIRMATION);
+    			alert.setTitle("Question");
+    			alert.setHeaderText("Play more");
+    			alert.setContentText("Do you want to play more?");
+    			
+    			ButtonType buttonYes = new ButtonType("Yes");
+    			ButtonType buttonNo = new ButtonType("No");
+    			
+    			alert.getButtonTypes().setAll(buttonYes, buttonNo);
+    			
+    			Optional<ButtonType> res = alert.showAndWait();
+    			
+    			if(res.get() == buttonYes) {
+    				doesUserWantMoreGame = true;
+    			} else {
+    				doesUserWantMoreGame = false;
+    			}
+    		}
+		   
+    	}
+    }
+
+    private void runGame() {
+    	 try {
 		    	FXMLLoader loader = new FXMLLoader();
 		    	loader.setLocation(Main.class.getResource("fxml/GameScreen.fxml"));
 		    	BorderPane root = loader.load();
@@ -126,7 +156,6 @@ public class MenuController {
 	    	} catch (Exception e) {
 				e.printStackTrace();
 			}
-    	}
     }
-
+    
 }
